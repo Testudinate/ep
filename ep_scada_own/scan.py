@@ -5,21 +5,19 @@ scan for ameters in cabr
 To sample the Q of four ameters in cabr, save them to [DB_FILE], and tranfer them
 up to our server via web-api.
 '''
-
-from pymodbus.client.sync import ModbusTcpClient as ModbusClient 
-from pymodbus.transaction import ModbusRtuFramer as ModbusFramer
-  
-from upload import UploadService 
-
 import time
 import os,string
 import sqlite3
+
+from ep_upload import UploadService 
+from pymodbus.client.sync import ModbusTcpClient as ModbusClient 
+from pymodbus.transaction import ModbusRtuFramer as ModbusFramer 
+
 from logger import Logger 
-from path import module_path
-__dir__ = module_path()
-print __dir__
-__module__="scan"            # module name
-logger=Logger(logname='%s/log.txt' %__dir__,loglevel=1,logger=__module__).getlog() 
+from locate_module_path import module_path
+
+__dir__ = module_path()  
+logger=Logger(logname='%s/log.txt' %__dir__,loglevel=1,logger=__file__).getlog() 
 
 RETRIES=3
 HOST = '192.168.0.254'              # host name

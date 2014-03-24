@@ -1,1 +1,31 @@
-ALL EP TOOLS
+===
+ep
+===
+This repository hosts the ep code and documentation. 
+ep aims to be all the ep projects, only for personally used. 
+
+ep_scada_own
+============
+    * Sample the Q of four ameters in cabr
+    * Save them to [DB_FILE]
+    * Tranfer them up to our server via web-api.
+    
+    ==usage==
+    $ python scan.py
+    
+    ==To do==
+    # autostartup in ubuntu 
+    
+    
+ep_transferEngergyData
+======================
+    * Get energy data record from SQL SERVER
+    * Tranfer them up to our server via web-api
+    * Package them to exe by pyexe.
+    
+    ==usage==
+    $ python transferEnergyData.py
+    $ double click transferEnergyData.bat, then double click [StartLink.exe]
+    
+    ==To do==
+    # windows service and autostartup!
