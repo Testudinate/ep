@@ -1,6 +1,0 @@
-#output_id-address-count-unit-divisor
-#count must be 2
-1,350,2,1,100
-2,52,2,2,1000000
-3,350,2,1,100
-4,350,2,1,100
