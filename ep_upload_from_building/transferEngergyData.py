@@ -8,6 +8,7 @@ import time
 import datetime
 import pyodbc
 import socket
+from mail import send_mail
 
 def we_are_frozen():
     """Returns whether we are frozen via py2exe.
@@ -29,14 +30,21 @@ logger=Logger(logname='%s\\log.txt' %current_path,loglevel=1,logger='DataTransmi
 hour_file='%s\\time.txt' %current_path
 '''
 Web API for EpExhibit system with [ip] & [self.url_prefix_post] only
-
+#-------------------------Demo-----------------------
+#	update(8,'100')
+#	insert(8,'-111','1970-01-01 01:00:00')
+#	execute('select * from point')
+#	TO DO LIST: update or insert many record is not finished.
+#-------------------------End------------------------
 '''
 class DataTransmission():
 	def __init__(self, config_file_path):	
 		self.map={}
 		self.record={}
-		self.buildingId,self.host,self.port,self.interval,self.drive,self.path,self.conn, \
+		self.buildingId,self.host,self.port,self.interval,self.drive,self.path,self.mail,self.conn, \
 		self.str_post,self.str_get=self.read_config(config_file_path)
+		self.to_address=self.mail.split(';')
+		print self.to_address
 		prefix='http://%s:%s' %(self.host,self.port)
 		self.url_prefix_post=prefix+self.str_post
 		self.url_prefix_get=prefix+self.str_get
@@ -80,10 +88,11 @@ class DataTransmission():
 			interval = cf.getint("baseconf", "interval") 
 			drive = cf.get("baseconf", "drive") 
 			path = cf.get("baseconf", "path") 
+			mail=cf.get("baseconf", "mail") 
 			conn=cf.get("baseconf","connection")
 			post = cf.get("baseconf", "post") 
 			get = cf.get("baseconf", "get") 
-			return (buildingId,host,port,interval,drive,path,conn,post,get)  
+			return (buildingId,host,port,interval,drive,path,mail,conn,post,get)  
 		except IOError:
 			logger.error("File [%s] is not available." %config_file_path)
 		except Exception,e:
@@ -182,6 +191,7 @@ class DataTransmission():
 		
 	def start(self):  
 		update_enable=False 
+		email_enable=False
 		while 1:
 			# tranfer in 5 minutes 
 			timestamp=self.init()
@@ -201,7 +211,14 @@ class DataTransmission():
 			if update_enable:
 				self.update()
 				update_enable=False
-			
+			if datetime.time.hour==8 :
+				if email_enable==False: 
+					subject='Heart beat'
+					content='This is from the building[%s].' % self.buildingId
+					send_mail(subject,content,self.to_address)
+					email_enable=True
+			else:
+				email_enable=False
 			#break #for test
 		logger.info('Windows service [TransferEnergyData] is stopped.')	
 			
