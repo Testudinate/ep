@@ -23,7 +23,7 @@ RETRIES=3
 HOST = '192.168.0.254'              # host name
 PORT = 4001                        # listening porT
 ADDR = (HOST, PORT)                 # 
-CONFIG_FILE="point.txt"
+CONFIG_FILE='%s/point.txt' %__dir__
 DB_FILE='db.energydata'
 
 BUILDING_ID=9
