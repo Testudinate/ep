@@ -32,7 +32,8 @@ def send_mail(sub,content,to_address):
         stp.connect(send_mail_host)
         stp.login(send_mail_user,send_mail_pswd)
         for addr in to_address:
-			stp.sendmail(send_mail_address, addr, msg.as_string())
+            if addr: 
+                stp.sendmail(send_mail_address, addr, msg.as_string())
         stp.close()
         return True
     except Exception, e:

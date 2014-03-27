@@ -5,7 +5,7 @@ import json
 import urllib
 from logger import Logger 
 import time
-import datetime
+import datetime  
 import pyodbc
 import socket
 from mail import send_mail
@@ -211,7 +211,7 @@ class DataTransmission():
 			if update_enable:
 				self.update()
 				update_enable=False
-			if datetime.time.hour==8 :
+			if datetime.datetime.now().strftime('%H')=='8' :
 				if email_enable==False: 
 					subject='Heart beat'
 					content='This is from the building[%s].' % self.buildingId
