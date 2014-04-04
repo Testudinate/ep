@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#encoding:utf-8
 '''
 scan for ameters in cabr
 --------------------------------------------------------------------------
@@ -6,10 +7,11 @@ To sample the Q of four ameters in cabr, save them to [DB_FILE], and tranfer the
 up to our server via web-api.
 '''
 import time
-import os,string
+import os,string,thread
 import sqlite3
 
 from ep_upload import UploadService 
+from mail import send_mail
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient 
 from pymodbus.transaction import ModbusRtuFramer as ModbusFramer 
 
@@ -31,6 +33,7 @@ SERVER='192.168.0.200:8008'
 URL_PREFIX_POST='http://%s/WebApi/Point.php?fun=sqlquery&param=' %SERVER
 URL_PREFIX_GET='http://%s/WebApi/GetPointInfoByBuildingId_controller.php?building_id=' %SERVER
 
+MAIL_LIST=('yangjiaohui@pkpm.com.cn','lizongning@pkpm.com.cn')
     
 # read configure info, return all points info, like (['1','350','2','1'],)
 def init():
@@ -92,13 +95,21 @@ def storage(dbfile,recordlist):
 		cur.executemany(sqlstring,recordlist)
 		db.commit()  
 
+def mail_notify(interval):  
+    while 1:
+        send_mail('HAILI building','running...',MAIL_LIST)
+        logger.info("email OK!") 
+        time.sleep(interval)   
+    thread.exit_thread()    
+
 def sample(): 
     points=init()
     print 'all points:',points
     map=mapping()
     print 'mapping:',map
     if not points:
-        logger.error("there is no valid record in [%s]." %CONFIG_FILE)
+        logger.error("there is no valid record in [%s]." %CONFIG_FILE)        
+    thread.start_new_thread(mail_notify, (3600*12,))          
     while True: 
         try: 
             # -- connect to the server --
@@ -129,8 +140,8 @@ def sample():
         except Exception,e:
             logger.error('error:',e)
         finally:
-            client.close()
-            time.sleep(300)            
+            client.close() 
+            time.sleep(300)                 
  
 sample()
  
