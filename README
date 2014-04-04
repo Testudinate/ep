@@ -13,8 +13,21 @@ ep_scada_own
     ==usage==
     $ python scan.py
     
-    ==To do==
-    # autostartup in ubuntu 
+    ==addto auto-startup== 
+    1. Create a .sh file as below:
+        #!/bin/bash
+        HOME=/home/yourname
+        VENVDIR=$HOME/.ENV
+        BINDIR=$VENVDIR
+        
+        cd $BINDIR
+        source $VENVDIR/bin/activate
+        $BINDIR/bin/python $BINDIR/projects/ep_scada_own/scan.py                                                            
+        
+    2. add '~/.ENV/autostartup.sh' at the end of '/etc/init.d/rc.local'
+     
+    
+    ==To do== 
     
     
 ep_transferEngergyData
