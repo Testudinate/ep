@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 支持多建筑，多平台，多协议，多电气接口，多种设备
+    ***************************************************************************
+    *address,index,count用十六进制表示，例如1A
+-->
+<root>
+    <!--项目基本信息-->
+    <project name="海丽大厦能耗监测管理平台" ></project>
+    <!--建筑集合-->
+    <building>
+        <item id="1" name="海丽大厦">MH310103BA0001</item> 
+    </building>  
+    <!--平台集合-->  
+    <platform>
+        <item id="1" from="./platform/SH.xml" user="" password="" aes="" alias="上海市级能耗数据中心"></item>
+        <item id="2" from="./platform/SH-CM.xml" user="" password="" aes="" alias="上海市闵行区能耗数据中心"></item>
+        <item id="3" from="./platform/ECO.xml" user="" password="" aes="" alias="公共能耗数据中心"></item>
+    </platform> 
+    <!--协议集合-->  
+    <protocol>
+        <item id="1" name="modbus-rtu" period="300" alias="能耗采集周期"></item>
+        <item id="2" name="modbus-rtu" period="3" alias="电力采集周期"></item>
+        <item id="3" name="modbus-ascii" period="300" alias="待定"></item>
+    </protocol>
+    <!--电气接口集合-->  
+    <transport>
+        <item id="1" port="/dev/ttyUSB0" para="9600,8N1" alias="待定"></item>
+        <item id="2" port="/dev/ttyUSB1" para="9600,8N1" alias="待定"></item>
+    </transport>
+    <!--设备集合-->  
+    <device>
+        <group id="1" from="./device/NY_DDS8003D.xml" index="FA" count="1F">
+            <item id="1" address="1" name="1#进线"></item>
+            <item id="2" address="2" name="2#进线"></item>
+            <item id="3" address="3" name="动力用电"></item>
+            <item id="4" address="4" name="照明用电"></item>
+            <item id="5" address="5" name="空调用电"></item>
+        </group>
+        <group id="2" from="./device/NY_DDS8003D.xml" index="FA" count="1F">
+            <item id="6" address="1" name="消防用电"></item>
+            <item id="7" address="2" name="备用"></item> 
+        </group>        
+    </device>
+    <!--采样集合-->  
+    <sample>
+        <group protocol_id="1" transport_id="1">
+             <item group_id="1"></item>
+        </group>   
+        <group protocol_id="1" transport_id="2">
+             <item group_id="2"></item>
+        </group>        
+    </sample>
+    <!--报警和上传设置-->
+    
+</root>

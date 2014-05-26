@@ -135,10 +135,10 @@ def sample():
                 r1=service.insert(recordlist) 
                 r2=service.update(recordlist) 
                 r3=storage(DB_FILE,recordlist)
-                print r1,r2,r3
+                #print r1,r2,r3
                 logger.info("OK!")
         except Exception,e:
-            logger.error('error:',e)
+            logger.error('error:%s' %e)
         finally:
             client.close() 
             time.sleep(300)                 

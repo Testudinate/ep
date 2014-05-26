@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 更多设备说明
+    ***************************************************************************
+    * address(0x)用十六进制表示
+    * datatype:0-WORD/USHORT,1-INTEGER/SHORT,2-DWORD/UINT32,3-LONG/INT32
+--> 
+<root>
+    <common name="智能温湿度计" band="蓝月" type="电表" protocol="modbus-rtu"></common>
+    <property> 
+        <object name="温度" address="0" divisor="10" unit="℃" datatype="0">
+        </object>
+        <object name="湿度" address="1" divisor="10" unit="%" datatype="0">
+        </object>    
+    </property> 
+</root>

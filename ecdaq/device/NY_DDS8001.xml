@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 更多设备说明
+    ***************************************************************************
+    * address用十六进制表示,例如0x15A
+    * datatype:0-WORD/USHORT,1-INTEGER/SHORT,2-DWORD/UINT32,3-LONG/INT32
+--> 
+<root>
+    <common name="纳宇单相电子计量仪" band="纳宇" phase="one" protocol="modbus-rtu"></common>
+    <property>
+        <item name="频率" address="130" divisor="100" unit="Hz" datatype="0">
+        </item>
+        <item name="相电压" address="131" divisor="10" unit="V" datatype="0">
+        </item>
+        <item name="相电流" address="139" divisor="100" unit="A" datatype="0">
+        </item>
+        <item name="有功功率" address="13E" divisor="1" unit="W" datatype="1">
+        </item>
+        <item name="无功功率" address="142" divisor="1" unit="Var" datatype="1">
+        </item>
+        <item name="视在功率" address="146" divisor="1" unit="VA" datatype="0">
+        </item>
+        <item name="功率因素" address="14A" divisor="1000" unit="" datatype="1">
+        </item>
+        <item name="有功电度EP_imp" address="156" divisor="100" unit="kWh" datatype="3">
+        </item>
+        <item name="有功电度EP_exp" address="158" divisor="100" unit="kWh" datatype="3">
+        </item>
+        <item name="感性无功电度EQ_imp" address="15A" divisor="100" unit="kVarh" datatype="3">
+        </item>
+        <item name="容性无功电度EQ_exp" address="15C" divisor="100" unit="kVarh" datatype="3">
+        </item>
+        <item name="总有功电度EP_total" address="15E" divisor="100" unit="kWh" datatype="3">
+        </item>
+        <item name="总无功电度EQ_total" address="162" divisor="100" unit="kWh" datatype="3">
+        </item>    
+    </property> 
+</root>
