@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 支持多建筑，多平台，多协议，多电气接口，多种设备
+    ***************************************************************************
+    * address,index,count用十六进制表示，例如1A
+    * 
+-->
+<root>
+    <common>
+        <ip>211.144.127.131</ip>
+        <port>9000</port>
+        <url type="webservice">http://211.144.127.131:9000/DataTransmissionService.asmx?WSDL</url>
+        <period>900</period><!--单位s-->
+    </common>
+    <!--
+        <item code="10000" name="总用电"/>
+        <item code="10A00" name="照明插座用电"/>
+        <item code="10A10" name="室内照明与插座"/>
+        <item code="10A1A" name="室内照明"/>
+        <item code="10A1B" name="室内插座"/>
+        <item code="10A20" name="公共区域照明和应急照明"/>
+        <item code="10A2C" name="公共区域照明"/>
+        <item code="10A2D" name="应急照明"/>
+        <item code="10A30" name="室外景观照明"/>
+        <item code="10B00" name="空调用电"/>
+        <item code="10B10" name="冷热站"/>
+        <item code="10B1E" name="冷水泵"/>
+        <item code="10B1F" name="冷却水泵"/>
+        <item code="10B1G" name="冷水机组"/>
+        <item code="10B1H" name="冷却塔"/>
+        <item code="10B1I" name="热水泵"/>
+        <item code="10B1J" name="电锅炉"/>
+        <item code="10B20" name="空调末端"/>
+        <item code="10B2K" name="新风机组"/>
+        <item code="10B2L" name="风机盘管"/>
+        <item code="10B2M" name="通排风设备"/>
+        <item code="10B2N" name="分体式空调器"/>
+        <item code="10C00" name="动力用电"/>
+        <item code="10C10" name="电梯"/>
+        <item code="10C20" name="水泵"/>
+        <item code="10C30" name="通风机"/>
+        <item code="10D00" name="特殊用电"/>
+        <item code="10D10" name="信息中心"/>
+        <item code="10D20" name="厨房餐厅"/>
+        <item code="10D30" name="洗衣房"/>
+        <item code="10D40" name="游泳池"/>        
+        <item code="10D50" name="其他"/>           
+        <item code="10D60" name="车库"/>
+        <item code="10D70" name="办事大厅"/>
+        <item code="10D80" name="健身房"/>                 
+    -->
+</root>

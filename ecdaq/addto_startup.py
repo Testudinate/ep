@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 # coding:utf-8
-# not done!
-
 
 from __future__ import with_statement
 
