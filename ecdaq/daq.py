@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # coding:utf-8
-
 '''
 
 '''
@@ -18,62 +17,95 @@ from pymodbus.client.sync import ModbusSerialClient as ModbusClient
 #from pymodbus.transaction import ModbusBinaryFramer as ModbusFramer
 #from pymodbus.transaction import ModbusAsciiFramer as ModbusFramer
 
-#---------------------------------------------------------------------------# 
-# configure the client logging
-#---------------------------------------------------------------------------# 
-import time
-#import os,sys
-#import sqlite3
 
-from ep_upload import UploadService 
-SERVER='192.168.0.200:8008'
-URL_PREFIX_POST='http://%s/WebApi/Point.php?fun=sqlquery&param=' %SERVER
-URL_PREFIX_GET='http://%s/WebApi/GetPointInfoByBuildingId_controller.php?building_id=' %SERVER
+import time,threading 
+from datetime import datetime
 
-from logger import Logger 
-from locate_module_path import module_path
-__dir__ = module_path()  
-logger=Logger(logname='%s/log.txt' %__dir__,loglevel=1,logger=__file__).getlog() 
+from define import * 
+from utilities import select
+from control import tCtrl
+
+from logger import Logger  
+logger=Logger(logname=LOG_FILE,loglevel=1,logger=__file__).getlog() 
+
+#**************************************************************************
+#* 解析
+#************************************************************************** 
+Baudrate=lambda x: int(x.split(',')[0])
+Bytesize=lambda x: int(x[-3])
+Parity=lambda x: x[-2]
+Stopbits=lambda x: int(x[-1])
+
+Begin=lambda x: int(x.split(',')[0])
+End=lambda x: int(x.split(',')[1])
 
 
-#import logging
-#logging.basicConfig()
-#log = logging.getLogger()
-#log.setLevel(logging.DEBUG)
+class SampleTimer(threading.Thread) :
+    '''
+    '''
+    def __init__(self,index,id):  
+        threading.Thread.__init__(self)  
+        self.index = index  
+        self.id = id 
+        self.thread_stop = False  
+   
+    def run(self): 
+        global tCtrl
+        _sample=select(tCtrl.samples,'id',self.id)
+        _protocol=select(tCtrl.protocols,'id',_sample.properties['protocol_id'])
+        _transport=select(tCtrl.transports,'id',_sample.properties['transport_id'])
+        _rule=select(tCtrl.rules,'id',_sample.properties['rule_id'])        
+        _method=_protocol.properties['method']
+        _port=_transport.properties['port']
+        _para=_transport.properties['para'] 
+        _timeout=int(_transport.properties['timeout'])/1000.0
+        client = ModbusClient(method=_method, port=_port,baudrate= \
+        Baudrate(_para),bytesize=Bytesize(_para),parity=Parity(_para),\
+        stopbits=Stopbits(_para),timeout=_timeout) 
+        _index=int(_rule.properties['index'])
+        _count=int(_rule.properties['count'])
+        _unit_begin=Begin(_rule.properties['range'])
+        _unit_end=End(_rule.properties['range'])
+        client.connect()  
+        self.interval = int(_protocol.properties['period']) 
+        while not self.thread_stop: 
+            for i in range(_unit_begin,_unit_end):
+                start_ = datetime.utcnow()
+                response=client.read_holding_registers(address=_index, \
+                count=_count,unit=i)                
+                tCtrl.samples[self.index].data[i]=response.registers
+                print response.registers #getRegister(1)/10.0
+                end_ = datetime.utcnow()
+                print '[cost time] %s' %(end_-start_)
+            time.sleep(self.interval)  
+    
+    def stop(self):  
+        self.thread_stop = True
+        client.close()               
+    
+    
+class Daq(object):
+    '''
+    '''
+    def __init__(self):
+        self.enabled=False 
+        
+    def start(self): 
+        global tCtrl 
+        self.samples=tCtrl.samples
+        for i in range(len(self.samples)):
+            _sample=self.samples[i]
+            t=SampleTimer(i,_sample.properties['id'])
+            t.run()
+            
+daq=Daq()
+daq.start()
 
-#---------------------------------------------------------------------------# 
-# Initialize the client
-#---------------------------------------------------------------------------# 
-client = ModbusClient(method='rtu', port='/dev/ttyUSB0', baudrate=9600,\
-    bytesize=8,parity='N',stopbits=1,timeout=1)
-#client = ModbusClient(port=1,stopbits=1,bytesize=8,parity='N',baudrate=9600) 
-#client = ModbusClient('localhost',port=502, framer=ModbusFramer)
-client.connect()
+for  c in tCtrl.samples:
+    for i in range(len(c.data)): 
+        print c.data[i]
+    
 
-#---------------------------------------------------------------------------# 
-# perform your requests
-#---------------------------------------------------------------------------# 
-#rq = client.write_coil(1, True)
-#rr = client.read_coils(1,1)
-#assert(rq.function_code < 0x80)     # test that we are not an error
-#assert(rr.bits[0] == True)          # test the expected value
-service=UploadService(URL_PREFIX_POST,URL_PREFIX_GET)
-t=0
-rh=0
-while 1:
-	rr=client.read_holding_registers(address=0,count=2,unit=1) 
-	now=time.localtime()
-	dt="%s-%s-%s %s:%s:%s" %now[:6]
-	if rr:
-		t=rr.getRegister(1)/10.0
-		rh=rr.getRegister(0)/10.0
-		logger.info('室内温度=%s度,室内湿度=%s%%' %(t,rh))
-		service.insert_single(265,t,dt)
-		service.insert_single(266,rh,dt)
-	time.sleep(10)
-#---------------------------------------------------------------------------# 
-# close the client
-#---------------------------------------------------------------------------# 
-client.close()
+
 
 

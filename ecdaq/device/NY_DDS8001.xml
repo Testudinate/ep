@@ -6,33 +6,26 @@
     * datatype:0-WORD/USHORT,1-INTEGER/SHORT,2-DWORD/UINT32,3-LONG/INT32
 --> 
 <root>
-    <common name="纳宇单相电子计量仪" band="纳宇" phase="one" protocol="modbus-rtu"></common>
-    <property>
-        <item id="F" name="频率" address="130" divisor="100" unit="Hz" datatype="0">
-        </item>
-        <item id="U" name="相电压" address="131" divisor="10" unit="V" datatype="0">
-        </item>
-        <item id="I" name="相电流" address="139" divisor="100" unit="A" datatype="0">
-        </item>
-        <item id="P" name="有功功率" address="13E" divisor="1" unit="W" datatype="1">
-        </item>
-        <item id="Q" name="无功功率" address="142" divisor="1" unit="Var" datatype="1">
-        </item>
-        <item id="S" name="视在功率" address="146" divisor="1" unit="VA" datatype="0">
-        </item>
-        <item id="PF" name="功率因素" address="14A" divisor="1000" unit="" datatype="1">
-        </item>
-        <item id="EP_imp" name="有功电度" address="156" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EP_exp" name="有功电度" address="158" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EQ_imp" name="感性无功电度" address="15A" divisor="100" unit="kVarh" datatype="3">
-        </item>
-        <item id="EQ_exp" name="容性无功电度" address="15C" divisor="100" unit="kVarh" datatype="3">
-        </item>
-        <item id="EP_total" name="总有功电度" address="15E" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EQ_total" name="总无功电度" address="162" divisor="100" unit="kWh" datatype="3">
-        </item>    
-    </property> 
+    <common>
+        <name>纳宇单相电子计量仪</name>
+        <band>纳宇</band>
+        <phase>one</phase>
+        <protocol>modbus-rtu</protocol>
+        <description>设备描述</description>
+    </common>
+    <items>
+        <item id="F" name="频率" address="130" divisor="100" unit="Hz" datatype="0"></item>
+        <item id="U" name="相电压" address="131" divisor="10" unit="V" datatype="0"></item>
+        <item id="I" name="相电流" address="139" divisor="100" unit="A" datatype="0"></item>
+        <item id="P" name="有功功率" address="13E" divisor="1" unit="W" datatype="1"></item>
+        <item id="Q" name="无功功率" address="142" divisor="1" unit="Var" datatype="1"></item>
+        <item id="S" name="视在功率" address="146" divisor="1" unit="VA" datatype="0"></item>
+        <item id="PF" name="功率因素" address="14A" divisor="1000" unit="" datatype="1"></item>
+        <item id="EP_imp" name="有功电度" address="156" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EP_exp" name="有功电度" address="158" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EQ_imp" name="感性无功电度" address="15A" divisor="100" unit="kVarh" datatype="3"></item>
+        <item id="EQ_exp" name="容性无功电度" address="15C" divisor="100" unit="kVarh" datatype="3"></item>
+        <item id="EP_total" name="总有功电度" address="15E" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EQ_total" name="总无功电度" address="162" divisor="100" unit="kWh" datatype="3"></item>    
+    </items> 
 </root>

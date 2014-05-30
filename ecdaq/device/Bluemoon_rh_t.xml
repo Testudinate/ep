@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 更多设备说明
+    ***************************************************************************
+    * address(0x)用十六进制表示
+    * datatype:0-WORD/USHORT,1-INTEGER/SHORT,2-DWORD/UINT32,3-LONG/INT32
+--> 
+<root>
+    <common>
+        <name>蓝月温湿度计量仪</name>
+        <band>蓝月</band>
+        <type>温湿度计</type> 
+        <protocol>rtu</protocol>
+        <description>设备描述</description>        
+    </common>
+    <items> 
+        <object name="温度" address="0" divisor="10" unit="℃" datatype="0">
+        </object>
+        <object name="湿度" address="1" divisor="10" unit="%" datatype="0">
+        </object>    
+    </items> 
+</root>

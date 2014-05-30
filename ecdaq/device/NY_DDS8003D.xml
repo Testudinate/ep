@@ -6,75 +6,48 @@
     * datatype:0-WORD/USHORT,1-INTEGER/SHORT,2-DWORD/UINT32,3-LONG/INT32
 --> 
 <root>
-    <common name="纳宇三相电子计量仪" band="纳宇" type="电表" phase="three" protocol="modbus-rtu"></common>
-    <property>
-        <item id="F" name="频率" address="130" divisor="100" unit="Hz" datatype="0">
-        </item>
-        <item id="V1" name="相电压" address="131" divisor="10" unit="V" datatype="0">
-        </item>
-        <item id="V2" name="相电压" address="132" divisor="10" unit="V" datatype="0">
-        </item>
-        <item id="V3" name="相电压" address="133" divisor="10" unit="V" datatype="0">
-        </item>
-        <item id="Vavg" name="相电压均值" address="134" divisor="10" unit="V" datatype="0">
-        </item>
-        <item id="I1" name="相(线)电流" address="139" divisor="100" unit="A" datatype="0">
-        </item>
-        <item id="I2" name="相(线)电流" address="13A" divisor="100" unit="A" datatype="0">
-        </item>
-        <item id="I3" name="相(线)电流" address="13B" divisor="100" unit="A" datatype="0">
-        </item>
-        <item id="Iavg" name="相电流均值" address="13C" divisor="100" unit="A" datatype="0">
-        </item>
-        <item id="P1" name="分相有功功率" address="13E" divisor="0.1" unit="W" datatype="1">
-        </item>
-        <item id="P2" name="分相有功功率" address="13F" divisor="0.1" unit="W" datatype="1">
-        </item>
-        <item id="P3" name="分相有功功率" address="140" divisor="0.1" unit="W" datatype="1">
-        </item>
-        <item id="Psum" name="系统有功功率" address="141" divisor="0.1" unit="W" datatype="1">
-        </item>
-        <item id="Q1" name="分相无功功率" address="142" divisor="0.1" unit="Var" datatype="1">
-        </item>
-        <item id="Q2" name="分相无功功率" address="143" divisor="0.1" unit="Var" datatype="1">
-        </item>
-        <item id="Q3" name="分相无功功率" address="144" divisor="0.1" unit="Var" datatype="1">
-        </item>
-        <item id="Qsum" name="系统无功功率" address="145" divisor="0.1" unit="Var" datatype="1">
-        </item>
-        <item id="S1" name="分相视在功率" address="146" divisor="0.1" unit="VA" datatype="0">
-        </item>
-        <item id="S2" name="分相视在功率" address="147" divisor="0.1" unit="VA" datatype="0">
-        </item>
-        <item id="S3" name="分相视在功率" address="148" divisor="0.1" unit="VA" datatype="0">
-        </item>
-        <item id="Ssum" name="系统视在功率" address="149" divisor="0.1" unit="VA" datatype="0">
-        </item>
-        <item id="PF1" name="分相功率因素PF1" address="14A" divisor="1000" unit="" datatype="1">
-        </item>
-        <item id="PF2" name="分相功率因素" address="14B" divisor="1000" unit="" datatype="1">
-        </item>
-        <item id="PF3" name="分相功率因素" address="14C" divisor="1000" unit="" datatype="1">
-        </item>
-        <item id="PF" name="系统功率因素" address="14D" divisor="1000" unit="" datatype="1">
-        </item>
-        <item id="Psum10" name="系统有功功率Psum10" address="14E" divisor="10" unit="W" datatype="2">
-        </item>
-        <item id="Qsum10" name="系统无功功率" address="150" divisor="10" unit="Var" datatype="2">
-        </item>
-        <item id="Ssum10" name="系统视在功率" address="152" divisor="10" unit="VA" datatype="2">
-        </item>
-        <item id="EP_imp" name="有功电度" address="156" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EP_exp" name="有功电度" address="158" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EQ_imp" name="感性无功电度" address="15A" divisor="100" unit="kVarh" datatype="3">
-        </item>
-        <item id="EQ_exp" name="容性无功电度" address="15C" divisor="100" unit="kVarh" datatype="3">
-        </item>
-        <item id="EP_total" name="总有功电度" address="15E" divisor="100" unit="kWh" datatype="3">
-        </item>
-        <item id="EQ_total" name="总无功电度" address="162" divisor="100" unit="kWh" datatype="3">
-        </item>        
-    </property> 
+    <common>
+        <name>纳宇单相电子计量仪</name>
+        <band>纳宇</band>
+        <type>电表</type>
+        <phase>one</phase>
+        <protocol>modbus-rtu</protocol>
+        <description>设备描述</description>        
+    </common>
+    <items>
+        <item id="F" name="频率" address="130" divisor="100" unit="Hz" datatype="0"></item>
+        <item id="V1" name="相电压" address="131" divisor="10" unit="V" datatype="0"></item>
+        <item id="V2" name="相电压" address="132" divisor="10" unit="V" datatype="0"></item>
+        <item id="V3" name="相电压" address="133" divisor="10" unit="V" datatype="0"></item>
+        <item id="Vavg" name="相电压均值" address="134" divisor="10" unit="V" datatype="0"></item>
+        <item id="I1" name="相(线)电流" address="139" divisor="100" unit="A" datatype="0"></item>
+        <item id="I2" name="相(线)电流" address="13A" divisor="100" unit="A" datatype="0"></item>
+        <item id="I3" name="相(线)电流" address="13B" divisor="100" unit="A" datatype="0"></item>
+        <item id="Iavg" name="相电流均值" address="13C" divisor="100" unit="A" datatype="0"></item>
+        <item id="P1" name="分相有功功率" address="13E" divisor="0.1" unit="W" datatype="1"></item>
+        <item id="P2" name="分相有功功率" address="13F" divisor="0.1" unit="W" datatype="1"></item>
+        <item id="P3" name="分相有功功率" address="140" divisor="0.1" unit="W" datatype="1"></item>
+        <item id="Psum" name="系统有功功率" address="141" divisor="0.1" unit="W" datatype="1"></item>
+        <item id="Q1" name="分相无功功率" address="142" divisor="0.1" unit="Var" datatype="1"></item>
+        <item id="Q2" name="分相无功功率" address="143" divisor="0.1" unit="Var" datatype="1"></item>
+        <item id="Q3" name="分相无功功率" address="144" divisor="0.1" unit="Var" datatype="1"></item>
+        <item id="Qsum" name="系统无功功率" address="145" divisor="0.1" unit="Var" datatype="1"></item>
+        <item id="S1" name="分相视在功率" address="146" divisor="0.1" unit="VA" datatype="0"></item>
+        <item id="S2" name="分相视在功率" address="147" divisor="0.1" unit="VA" datatype="0"></item>
+        <item id="S3" name="分相视在功率" address="148" divisor="0.1" unit="VA" datatype="0"></item>
+        <item id="Ssum" name="系统视在功率" address="149" divisor="0.1" unit="VA" datatype="0"></item>
+        <item id="PF1" name="分相功率因素PF1" address="14A" divisor="1000" unit="" datatype="1"></item>
+        <item id="PF2" name="分相功率因素" address="14B" divisor="1000" unit="" datatype="1"></item>
+        <item id="PF3" name="分相功率因素" address="14C" divisor="1000" unit="" datatype="1"></item>
+        <item id="PF" name="系统功率因素" address="14D" divisor="1000" unit="" datatype="1"></item>
+        <item id="Psum10" name="系统有功功率Psum10" address="14E" divisor="10" unit="W" datatype="2"></item>
+        <item id="Qsum10" name="系统无功功率" address="150" divisor="10" unit="Var" datatype="2"></item>
+        <item id="Ssum10" name="系统视在功率" address="152" divisor="10" unit="VA" datatype="2"></item>
+        <item id="EP_imp" name="有功电度" address="156" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EP_exp" name="有功电度" address="158" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EQ_imp" name="感性无功电度" address="15A" divisor="100" unit="kVarh" datatype="3"></item>
+        <item id="EQ_exp" name="容性无功电度" address="15C" divisor="100" unit="kVarh" datatype="3"></item>
+        <item id="EP_total" name="总有功电度" address="15E" divisor="100" unit="kWh" datatype="3"></item>
+        <item id="EQ_total" name="总无功电度" address="162" divisor="100" unit="kWh" datatype="3"></item>        
+    </items> 
 </root>

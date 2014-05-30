@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+    * 自定义模型
+    ***************************************************************************
+    * expr中编码统一用设备的地址（数字）表示，前缀为“#”
+    * low, high表示预警上下限; min, max表示报警上下限 
+    
+-->
+<root>
+    <common>
+        <alias>住建部标准</alias> 
+        <description></description>
+    </common>
+    <items>
+        <item name="总用电" code="10000" expr="" low="" high="" min="" max="" out_id="1001" />
+        <item name="照明插座用电" code="10A00" expr="100*(#4+#5+#6)" low="" high="" min="" max="" out_id="1002" />
+        <item name="室内照明与插座" code="10A10" expr="100*(#4+#5)" low="" high="" min="" max="" out_id="1003" />
+        <item name="室内照明" code="10A1A" expr="100*#4" low="" high="" min="" max="" out_id="1004" />
+        <item name="室内插座" code="10A1B" expr="100*#5" low="" high="" min="" max="" out_id="1005" />
+        <item name="公共区域照明和应急照明" code="10A20" expr="50*#6" low="" high="" min="" max="" out_id="1006" />
+        <item name="公共区域照明" code="10A2C" expr="25*#6" low="" high="" min="" max="" out_id="1007" />
+        <item name="应急照明" code="10A2D" expr="25*#6" low="" high="" min="" max="" out_id="1008" />
+        <item name="室外景观照明" code="10A30" expr="50*#6" low="" high="" min="" max="" out_id="1009" />
+        <item name="空调用电" code="10B00" expr="100*(#1+#2+#3)" low="" high="" min="" max="" out_id="1010" />
+        <item name="冷热站" code="10B10" expr="60*(#1+#2+#3)" low="" high="" min="" max="" out_id="1011" />
+        <item name="冷水泵" code="10B1E" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1012" />
+        <item name="冷却水泵" code="10B1F" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1013" />
+        <item name="冷水机组" code="10B1G" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1014" />
+        <item name="冷却塔" code="10B1H" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1015" />
+        <item name="热水泵" code="10B1I" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1016" />
+        <item name="电锅炉" code="10B1J" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1017" />
+        <item name="空调末端" code="10B20" expr="40*(#1+#2+#3)" low="" high="" min="" max="" out_id="1018" />
+        <item name="新风机组" code="10B2K" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1019" />
+        <item name="风机盘管" code="10B2L" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1020" />
+        <item name="通排风设备" code="10B2M" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1021" />
+        <item name="分体式空调器" code="10B2N" expr="10*(#1+#2+#3)" low="" high="" min="" max="" out_id="1022" />
+        <item name="动力用电" code="10C00" expr="100*#7" low="" high="" min="" max="" out_id="1023" />
+        <item name="电梯" code="10C10" expr="30*#7" low="" high="" min="" max="" out_id="1024" />
+        <item name="水泵" code="10C20" expr="30*#7" low="" high="" min="" max="" out_id="1025" />
+        <item name="通风机" code="10C30" expr="40*#7" low="" high="" min="" max="" out_id="1026" />
+        <item name="特殊用电" code="10D00" expr="100*#7" low="" high="" min="" max="" out_id="1027" />
+        <item name="信息中心" code="10D10" expr="20*#7" low="" high="" min="" max="" out_id="1028" />
+        <item name="厨房餐厅" code="10D20" expr="20*#7" low="" high="" min="" max="" out_id="1029" />
+        <item name="洗衣房" code="10D30" expr="10*#7" low="" high="" min="" max="" out_id="1030" />
+        <item name="游泳池" code="10D40" expr="10*#7" low="" high="" min="" max="" out_id="1031" />
+        <item name="车库" code="10D60" expr="10*#7" low="" high="" min="" max="" out_id="1032" />
+        <item name="办事大厅" code="10D70" expr="10*#7" low="" high="" min="" max="" out_id="1033" />
+        <item name="健身房" code="10D80" expr="10*#7" low="" high="" min="" max="" out_id="1034" />
+        <item name="其他" code="10D50" expr="10*#7" low="" high="" min="" max="" out_id="1035" /> 
+    </items>
+</root>     

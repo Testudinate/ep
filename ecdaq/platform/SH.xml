@@ -7,12 +7,17 @@
 -->
 <root>
     <common>
+        <code>SH</code>
+        <name>上海市建筑能耗数据中心</name>
         <ip>211.144.127.131</ip>
         <port>9000</port>
-        <url type="webservice">http://211.144.127.131:9000/DataTransmissionService.asmx?WSDL</url>
+        <protocol>webservice</protocol>
+        <url>http://211.144.127.131:9000/DataTransmissionService.asmx?WSDL</url>
         <period>900</period><!--单位s-->
+        <description>详细描述</description>
     </common>
-    <!--
+    <!--模型模板-->
+    <items>
         <item code="10000" name="总用电"/>
         <item code="10A00" name="照明插座用电"/>
         <item code="10A10" name="室内照明与插座"/>
@@ -48,5 +53,5 @@
         <item code="10D60" name="车库"/>
         <item code="10D70" name="办事大厅"/>
         <item code="10D80" name="健身房"/>                 
-    -->
+    </items>
 </root>
